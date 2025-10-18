@@ -2,26 +2,26 @@ class Flask:
     def __init__(self):
         self.routes = {}
     
-    def route(self, r, m):
+    def route(self, m, r):
         def wrapper(func):
-            self.routes[r] = {m :  func} 
+            self.routes[m] = {r :  func} 
         return wrapper 
     
 app = Flask()
 
-@app.route("/products", "GET")
+@app.route("GET", "/products")
 def get_products():
     print("Hello")
 
-@app.route("/categories", "POST")
+@app.route("POST", "/categories")
 def post_categories():
     print("Bye")
 
 def main():
-    get_products = app.routes['/products']["GET"]
+    get_products = app.routes["GET"]['/products']
     get_products()
 
-    post_categories = app.routes ['/categories']["POST"]
+    post_categories = app.routes["POST"]['/categories']
     post_categories()
 
 if __name__=="__main__":
